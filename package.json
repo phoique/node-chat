@@ -1,0 +1,19 @@
+{
+  "name": "node-chat",
+  "version": "0.0.1",
+  "description": "Chat with Express.js",
+  "main": "app.js",
+  "repository": "https://github.com/Phoique/node-chat.git",
+  "author": "Enes Kahraman <official.phoique@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bulma": "^0.7.4",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.2",
+    "handlebars": "^4.1.0"
+  }
+}
