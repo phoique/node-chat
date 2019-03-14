@@ -1,0 +1,11 @@
+.message-left {
+  padding: 0.25em; 
+  text-align: left; 
+  overflow-wrap: normal;
+}
+
+.message-right {
+  padding: 0.25em; 
+  text-align: right; 
+  overflow-wrap: normal;
+}
