@@ -3,7 +3,12 @@ const indexRoute = express.Router();
 
 // User login page
 indexRoute.get('/', (request, response) => {
-  response.render('index');
+
+  // Username == null flash message
+  response.render('index', {
+    flash: request.flash('username_null')
+  });
+
 });
 
 // user login and chat redirect
@@ -15,9 +20,9 @@ indexRoute.post('/', (request, response) => {
     response.redirect('/chat');
   }
   else {
-    response.send();
+    request.flash('username_null', 'Kullanıcı adı boş olamaz.');
+    response.redirect('/');
   }
-
 
 });
 

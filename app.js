@@ -1,7 +1,10 @@
 const express = require('express');
 const hds = require('express-handlebars');
-const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const session = require('express-session');
+const dotenv = require('dotenv').config();
 
 // Route import
 const indexRoute = require('./routes/index');
@@ -20,6 +23,11 @@ app.use('/static', express.static('public'));
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Session and flash message
+app.use(cookieParser('tjhr'));
+app.use(session({cookie: { maxAge: 60000 }}));
+app.use(flash());
 
 // Route
 app.use('/', indexRoute);

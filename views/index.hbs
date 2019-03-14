@@ -15,6 +15,11 @@
                   <input class="input is-focused is-medium" name="username" type="username" placeholder="Kullanıcı adınızı giriniz.">
                 </div>
               </div>
+
+              {{#if flash}}
+                <p class="has-text-danger is-medium">{{flash}}</p>
+              {{/if}}
+
               <div class="field">
                 <div class="control">
                   <button type="submit" class="button is-primary is-fullwidth">Kayıt ol</button>
