@@ -25,8 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Session and flash message
-app.use(cookieParser('tjhr'));
-app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  cookie: {
+    maxAge: 60000
+  },
+  saveUninitialized: true,
+  resave: true
+}));
 app.use(flash());
 
 // Route
