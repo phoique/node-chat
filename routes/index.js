@@ -4,22 +4,28 @@ const indexRoute = express.Router();
 // User login page
 indexRoute.get('/', (request, response) => {
 
-  // Username == null flash message
-  response.render('index', {
-    flash: request.flash('username_null')
-  });
+  // if there is a session
+  if (request.session.username) {
+    response.redirect('/chat');
+  } else {
+    // Username == null flash message
+    response.render('index', {
+      flash: request.flash('username_null')
+    });
+  }
 
 });
 
-// user login and chat redirect
+// user login method
 indexRoute.post('/', (request, response) => {
   const { username } = request.body;
 
-  // username != null
-  if(username) {
+  if (username) {
+    // session create
+    request.session.username = username;
     response.redirect('/chat');
-  }
-  else {
+  } else {
+    // username null
     request.flash('username_null', 'Kullanıcı adı boş olamaz.');
     response.redirect('/');
   }

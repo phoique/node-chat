@@ -1,7 +1,6 @@
 const express = require('express');
 const hds = require('express-handlebars');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const dotenv = require('dotenv').config();
