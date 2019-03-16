@@ -12,6 +12,16 @@
   <div class="hero-body">
     <div class="container">
       <div class="box">
+
+
+        {{#each messages}}
+          <div class="message-left">
+          <p class="tag is-medium is-warning">{{username}}: {{message}}</p>
+        </div>
+        {{/each}}
+
+
+
         <div class="message-left">
           <p class="tag is-medium is-warning">Merhaba!</p>
         </div>
@@ -30,10 +40,10 @@
   <div class="container">
     <div class="hero-foot">
       <footer class="section">
-        <form>
+        <form action="/chat" method="POST">
           <div class="field has-addons">
             <div class="control is-expanded">
-              <input class="input" type="text" placeholder="Mesaj yazın...">
+              <input class="input" name="message" type="text" placeholder="Mesaj yazın...">
             </div>
             <div class="control"><button class="button is-info">Mesajı Yolla</button></div>
           </div>

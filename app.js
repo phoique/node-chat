@@ -1,5 +1,5 @@
 const express = require('express');
-const hds = require('express-handlebars');
+const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -16,7 +16,12 @@ const isAuth = require('./middleware/isAuth');
 const app = express();
 
 // Template engine. Default layout. x.hbs
-app.engine('hbs', hds({ defaultLayout: 'layout', extname: 'hbs' }));
+const settings = handlebars.create({
+  defaultLayout: 'layout', 
+  extname: 'hbs'
+});
+
+app.engine('hbs', settings.engine);
 app.set('view engine', 'hbs');
 
 // Static file js, css
