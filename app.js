@@ -9,6 +9,9 @@ const dotenv = require('dotenv').config();
 const indexRoute = require('./routes/index');
 const chatRoute = require('./routes/chat');
 
+// Middleware
+const isAuth = require('./middleware/isAuth');
+
 // Express app
 const app = express();
 
@@ -36,7 +39,7 @@ app.use(flash());
 
 // Route
 app.use('/', indexRoute);
-app.use('/chat', chatRoute);
+app.use('/chat', isAuth, chatRoute);
 
 app.listen(process.env.PORT, () => 
   console.log(`http://localhost:${process.env.PORT}`));
