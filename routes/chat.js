@@ -21,14 +21,12 @@ const fakeMessages = [
 
 // Chat page
 chatRoute.get('/', (request, response) => {
+  // login username 
+  let lusername = request.session.username;
   
   response.render('chat', {
     messages: fakeMessages,
-    login_username: request.session.username,
-
-    helpers: {
-      equals: () => "true"
-  }
+    lusername: lusername,
   });
 });
 

@@ -1,9 +1,10 @@
 const express = require('express');
-const handlebars = require('express-handlebars');
+const hdsExpress = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const dotenv = require('dotenv').config();
+const hds = require('handlebars');
 
 // Route import
 const indexRoute = require('./routes/index');
@@ -16,7 +17,22 @@ const isAuth = require('./middleware/isAuth');
 const app = express();
 
 // Template engine. Default layout. x.hbs
-const settings = handlebars.create({
+// if_equals(x '===' y)
+hds.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
+  var operators, result;
+  operators = {
+      '===': function (l, r) { return l === r; },
+  };
+  result = operators[operator](lvalue, rvalue);
+  if (result) {
+      return options.fn(this);
+  } else {
+      return options.inverse(this);
+  }
+
+});
+
+const settings = hdsExpress.create({
   defaultLayout: 'layout', 
   extname: 'hbs'
 });
