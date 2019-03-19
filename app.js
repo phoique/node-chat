@@ -1,10 +1,10 @@
 const express = require('express');
-const hdsExpress = require('express-handlebars');
+const hbsExpress = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
+const hbs = require('handlebars');
 const dotenv = require('dotenv').config();
-const hds = require('handlebars');
 
 // Route import
 const indexRoute = require('./routes/index');
@@ -18,7 +18,7 @@ const app = express();
 
 // Template engine. Default layout. x.hbs
 // if_equals(x '===' y)
-hds.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
+hbs.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
   var operators, result;
   operators = {
       '===': function (l, r) { return l === r; },
@@ -32,7 +32,7 @@ hds.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
 
 });
 
-const settings = hdsExpress.create({
+const settings = hbsExpress.create({
   defaultLayout: 'layout', 
   extname: 'hbs'
 });
@@ -62,5 +62,8 @@ app.use(flash());
 app.use('/', indexRoute);
 app.use('/chat', isAuth, chatRoute);
 
-app.listen(process.env.PORT, () => 
+const server = app.listen(process.env.PORT, () => 
   console.log(`http://localhost:${process.env.PORT}`));
+
+// Socket Start
+var socket = require('./socket/socketServer')(server);
