@@ -1,12 +1,20 @@
 const socketio = require('socket.io');
 const io = socketio();
 
-function socketStart(server) {
-  io.listen(server);
-}
+// Socket listen server
+socketStart = server => io.listen(server);
 
-io.on('connection', function(socket){
-  console.log('a user connected');
+// Socket connect
+io.on('connection', socket => {
+  // socket.handshake.session
+  socket.on('hello', () => console.log('server Hello'));
+  socket.emit('hi');
+
+  // Socket disconnect
+  socket.on('disconnect', () => {
+    console.log('Kullanıcı ayrıldı.');
+  });
+
 });
 
 module.exports = socketStart;

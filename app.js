@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const hbs = require('handlebars');
+const sharedsession = require("express-socket.io-session");
 const dotenv = require('dotenv').config();
 
 // Route import
@@ -48,14 +49,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Session and flash message
-app.use(session({
+const sessionSettings = session({
   secret: process.env.SECRET_KEY,
   cookie: {
     maxAge: 60000
   },
   saveUninitialized: true,
   resave: true
-}));
+});
+
+app.use(sessionSettings);
 app.use(flash());
 
 // Route
@@ -67,3 +70,6 @@ const server = app.listen(process.env.PORT, () =>
 
 // Socket Start
 var socket = require('./socket/socketServer')(server);
+
+// Socket session share
+socket.use(sharedsession(sessionSettings));
