@@ -4,18 +4,18 @@ const chatRoute = express.Router();
 const fakeMessages = [
   {
     id: 1,
-    username: "admin",
-    message: "Hello World."
+    username: 'admin',
+    message: 'Hello World.'
   },
   {
     id: 2,
-    username: "admin",
-    message: "Hi!"
+    username: 'admin',
+    message: 'Hi!'
   },
   {
     id: 3,
-    username: "user",
-    message: "Hi admin!"
+    username: 'user',
+    message: 'Hi admin!'
   }
 ];
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
  * Socket.IO v2.2.0
  * (c) 2014-2018 Guillermo Rauch

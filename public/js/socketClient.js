@@ -1,8 +1,9 @@
+/* eslint-disable */
 const socket = io();
 
 socket.on('messages', (data) => {
 
-  fake = data.fakeMessages;
+  fake = data.fakeDatebase;
   fake.map(messages => {
 
     // The user who wrote the message
@@ -19,7 +20,7 @@ socket.on('messages', (data) => {
       pos_div.appendChild(message_p);
 
       // Message box append
-      element_id = document.getElementById("message-box");
+      element_id = document.getElementById('message-box');
       element_id.appendChild(pos_div);
 
     } else {
@@ -35,7 +36,7 @@ socket.on('messages', (data) => {
       pos_div.appendChild(message_p);
 
       // Message box append
-      element_id = document.getElementById("message-box");
+      element_id = document.getElementById('message-box');
       element_id.appendChild(pos_div);
 
     }

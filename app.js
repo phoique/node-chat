@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const hbs = require('handlebars');
-const sharedsession = require("express-socket.io-session");
-const dotenv = require('dotenv').config();
+const sharedsession = require('express-socket.io-session');
+const dotenv = require('dotenv');
+
+// Dotenv
+dotenv.config();
 
 // Route import
 const indexRoute = require('./routes/index');
@@ -22,13 +25,13 @@ const app = express();
 hbs.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
   var operators, result;
   operators = {
-      '===': function (l, r) { return l === r; },
+    '===': function (l, r) { return l === r; },
   };
   result = operators[operator](lvalue, rvalue);
   if (result) {
-      return options.fn(this);
+    return options.fn(this);
   } else {
-      return options.inverse(this);
+    return options.inverse(this);
   }
 
 });

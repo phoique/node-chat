@@ -1,31 +1,26 @@
 const socketio = require('socket.io');
 const io = socketio();
 
-const fakeMessages = [
+const fakeDatebase = [
   {
     id: 1,
-    username: "admin",
-    message: "Hello World."
+    username: 'admin',
+    message: 'Hello World.'
   },
   {
     id: 2,
-    username: "admin",
-    message: "Hi!"
+    username: 'admin',
+    message: 'Hi!'
   },
   {
     id: 3,
-    username: "user",
-    message: "Hi admin!"
+    username: 'user',
+    message: 'Hi admin!'
   },
-  {
-    id: 4,
-    username: "name",
-    message: "Hi Man!"
-  }
 ];
 
 // Socket listen server
-socketStart = server => io.listen(server);
+const socketStart = server => io.listen(server);
 
 // Socket connect
 io.on('connection', socket => {
@@ -33,21 +28,24 @@ io.on('connection', socket => {
   // User login
   if (socket.handshake.session.username) {
 
-    console.log("Giriş yapıldı.");
+    console.log('User logged.');
 
-      // socket.handshake.session
+    // socket.handshake.session
     socket.emit('messages', {
-      fakeMessages,
+      fakeDatebase,
       login_user: socket.handshake.session.username
     });
 
     socket.on('add message', (message) => {
-      let push_datebase = {
-        id: 5,
+
+      let id = 3;
+      let pushDatebase = {
+        id: id+=1,
         username: socket.handshake.session.username,
         message
       };
-      fakeMessages.push(push_datebase);
+      fakeDatebase.push(pushDatebase);
+
     });
     
   } 
@@ -56,7 +54,7 @@ io.on('connection', socket => {
   else {
     // Socket disconnect
     socket.on('disconnect', () => {
-      console.log('Giriş yapılmamış.');
+      console.log('Not logged in.');
     });
   }
 
