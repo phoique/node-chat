@@ -35,6 +35,15 @@ io.on('connection', socket => {
     login_user: socket.handshake.session.username
   });
 
+  socket.on('add message', (message) => {
+    let push_datebase = {
+      id: 5,
+      username: socket.handshake.session.username,
+      message
+    };
+    fakeMessages.push(push_datebase);
+  });
+
   // Socket disconnect
   socket.on('disconnect', () => {
     console.log('Kullanıcı ayrıldı.');

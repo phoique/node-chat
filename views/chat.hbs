@@ -18,12 +18,12 @@
   <div class="container">
     <div class="hero-foot">
       <footer class="section">
-        <form action="/chat" method="POST">
+        <form>
           <div class="field has-addons">
             <div class="control is-expanded">
-              <input class="input" name="message" type="text" placeholder="Mesaj yazın...">
+              <input id="add_message" class="input" name="message" type="text" placeholder="Mesaj yazın...">
             </div>
-            <div class="control"><button class="button is-info">Mesajı Yolla</button></div>
+            <div class="control"><button onclick="sendMessage()" class="button is-info">Mesajı Yolla</button></div>
           </div>
         </form>
       </footer>

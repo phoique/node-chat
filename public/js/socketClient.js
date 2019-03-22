@@ -43,3 +43,10 @@ socket.on('messages', (data) => {
   });
   
 });
+
+// Send message 
+let sendMessage = () => {
+  let add_message = document.getElementById('add_message');
+  socket.emit('add message', add_message.value);
+  console.log(add_message.value);
+}
