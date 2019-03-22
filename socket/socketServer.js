@@ -5,17 +5,17 @@ const fakeDatebase = [
   {
     id: 1,
     username: 'admin',
-    message: 'Hello World.'
+    message: 'Herkese Merhaba!'
   },
   {
     id: 2,
     username: 'admin',
-    message: 'Hi!'
+    message: 'Nasılsınız?'
   },
   {
     id: 3,
     username: 'user',
-    message: 'Hi admin!'
+    message: 'Teşekkür ederiz, siz nasılsınız?'
   },
 ];
 
