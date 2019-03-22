@@ -1,6 +1,9 @@
 # Screenshot
-![Login Page](./images/.login.png)
-![Chat Page](./images/chat.png)
+## Login page
+![Login Page](./public/images/.login.png)
+
+## Chat page
+![Chat Page](./public/images/chat.png)
 
 
 
