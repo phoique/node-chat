@@ -28,8 +28,6 @@ io.on('connection', socket => {
   // User login
   if (socket.handshake.session.username) {
 
-    console.log('User logged.');
-
     // socket.handshake.session
     socket.emit('messages', {
       fakeDatebase,

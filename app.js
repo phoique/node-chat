@@ -3,7 +3,6 @@ const hbsExpress = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
-const hbs = require('handlebars');
 const sharedsession = require('express-socket.io-session');
 const dotenv = require('dotenv');
 
@@ -21,26 +20,10 @@ const isAuth = require('./middleware/isAuth');
 const app = express();
 
 // Template engine. Default layout. x.hbs
-// if_equals(x '===' y)
-hbs.registerHelper('if_equals', function (lvalue, operator, rvalue, options) {
-  var operators, result;
-  operators = {
-    '===': function (l, r) { return l === r; },
-  };
-  result = operators[operator](lvalue, rvalue);
-  if (result) {
-    return options.fn(this);
-  } else {
-    return options.inverse(this);
-  }
-
-});
-
 const settings = hbsExpress.create({
   defaultLayout: 'layout', 
   extname: 'hbs'
 });
-
 app.engine('hbs', settings.engine);
 app.set('view engine', 'hbs');
 
