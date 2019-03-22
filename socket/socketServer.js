@@ -29,25 +29,36 @@ socketStart = server => io.listen(server);
 
 // Socket connect
 io.on('connection', socket => {
-  // socket.handshake.session
-  socket.emit('messages', {
-    fakeMessages,
-    login_user: socket.handshake.session.username
-  });
 
-  socket.on('add message', (message) => {
-    let push_datebase = {
-      id: 5,
-      username: socket.handshake.session.username,
-      message
-    };
-    fakeMessages.push(push_datebase);
-  });
+  // User login
+  if (socket.handshake.session.username) {
 
-  // Socket disconnect
-  socket.on('disconnect', () => {
-    console.log('Kullanıcı ayrıldı.');
-  });
+    console.log("Giriş yapıldı.");
+
+      // socket.handshake.session
+    socket.emit('messages', {
+      fakeMessages,
+      login_user: socket.handshake.session.username
+    });
+
+    socket.on('add message', (message) => {
+      let push_datebase = {
+        id: 5,
+        username: socket.handshake.session.username,
+        message
+      };
+      fakeMessages.push(push_datebase);
+    });
+    
+  } 
+  
+  // User logout   or not logged in
+  else {
+    // Socket disconnect
+    socket.on('disconnect', () => {
+      console.log('Giriş yapılmamış.');
+    });
+  }
 
 });
 
