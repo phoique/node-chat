@@ -35,15 +35,13 @@ io.on('connection', socket => {
     });
 
     socket.on('add message', (message) => {
-
       let id = 3;
       let pushDatebase = {
         id: id+=1,
         username: socket.handshake.session.username,
         message
       };
-      fakeDatebase.push(pushDatebase);
-
+      fakeDatebase.unshift(pushDatebase);
     });
     
   } 
